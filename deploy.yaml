@@ -1,0 +1,42 @@
+---
+- hosts: op9
+  tasks:
+    - name: endure docker python stuff
+      become: yes
+      apt:
+        name: python3-docker
+        state: present
+    - name: ensure bot dir
+      become: yes
+      file:
+        path: /var/lz-bot
+        state: directory
+        mode: 0755
+
+    - name: make rndata net
+      docker_network:
+        name: rndata
+
+    - name: start bot
+      vars:
+        api_token: !vault |
+          $ANSIBLE_VAULT;1.1;AES256
+          63313334313430336336316230306336343136326538396630666139656235643839633835653130
+          3430653133363137376234366632306338643035646665630a366230333464396261383636643430
+          34303766326134633662353436316336636362333236656431323439636365333365663639366532
+          3965306132323634640a363166626337616534613131323163646334623936323864336531613930
+          33343963653338643132383234373831356262336237333761643766333537636631343532343963
+          3933363061343334623638353139653964666231366664633466
+      docker_container:
+        name: lz-bot
+        image: gcr.io/rndata/lz-bot:latest
+        pull: True
+        networks:
+          - name: rndata
+        volumes:
+          - /var/lz-bot:/var/lz-bot
+        restart_policy: unless-stopped
+        env:
+          TME_API_TOKEN: "{{ api_token }}"
+        command: >-
+          lz-bot run /var/lz-bot/state.pickle
