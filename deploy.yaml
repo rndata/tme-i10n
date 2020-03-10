@@ -39,4 +39,4 @@
         env:
           TME_API_TOKEN: "{{ api_token }}"
         command: >-
-          lz-bot run /var/lz-bot/state.pickle
+          lz-bot run ckpt

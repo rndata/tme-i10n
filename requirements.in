@@ -1,0 +1,2 @@
+-e file:sodeep#egg=sodeep
+-e file:.#egg=tme-i10n

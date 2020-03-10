@@ -10,11 +10,16 @@ setup(
             "lz-bot = lz_bot.main:main",
         ],
     },
-    python_requires=">=3.8,<3.9",
+    python_requires=">=3.7,<3.9",
     install_requires=[
         "toolz ~= 0.9",
         "fire ~= 0.2",
         "aiogram ~= 2.3",
         "attrs ~= 19.3",
+        "scipy ~= 1.4.1",
+        "numpy ~= 1.18.1",
+        "sklearn",
+        "returns ~= 0.11",
+        "sodeep"
     ],
 )

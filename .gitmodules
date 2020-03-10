@@ -1,0 +1,3 @@
+[submodule "sodeep"]
+	path = sodeep
+	url = git@github.com:rndata/sodeep.git
