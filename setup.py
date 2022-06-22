@@ -17,7 +17,7 @@ setup(
         "aiogram ~= 2.3",
         "attrs ~= 19.3",
         "scipy ~= 1.4.1",
-        "numpy ~= 1.18.1",
+        "numpy >= 1.18.1,< 1.23.0",
         "sklearn",
         "returns ~= 0.11",
         "sodeep"
